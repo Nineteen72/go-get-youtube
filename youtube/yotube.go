@@ -69,7 +69,7 @@ type Option struct {
 
 // _________________________________________________________________
 // given a video id, get it's information from youtube
-func Get(video_id string, client http.Client) (Video, error) {
+func Get(video_id string, client *http.Client) (Video, error) {
 	// fetch video meta from youtube
 	query_string, err := fetchMeta(video_id, client)
 	if err != nil {
@@ -278,7 +278,7 @@ func (v *Video) IndexByItag(itag int) (int, *Format) {
 
 // _________________________________________________________________
 // fetch video meta from http
-func fetchMeta(video_id string, client http.Client) (string, error) {
+func fetchMeta(video_id string, client *http.Client) (string, error) {
 	resp, err := client.Get(URL_META + video_id)
 
 	// fetch the meta information from http
